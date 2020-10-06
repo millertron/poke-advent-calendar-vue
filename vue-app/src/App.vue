@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Main />
+    <nav class='nav-red p-2'>
+        <h3>Greeting</h3>
+    </nav>
+    <Calendar />
   </div>
 </template>
 
 <script>
-import Main from './components/Main'
+import Calendar from './components/Calendar'
 
 export default {
   name: 'App',
   components: {
-    Main
+    Calendar
   }
 }
 </script>
