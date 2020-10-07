@@ -1,19 +1,22 @@
 <template>
-  <div id="app">
-    <nav class='nav-red p-2'>
-        <h3>Greeting</h3>
-    </nav>
-    <Calendar />
+  <div>
+    <router-view />
+    <div class='mt-5'>
+        <span class='pt-5 small'>
+            Powered by Millertronic Systems™. <br/>
+            Pokémon images &amp; names © Nintendo/Game Freak 1995-{{currentYear}}. <br/>
+            Pokémon sprite links © Pokémon Database, 2008-{{currentYear}}.
+        </span>
+    </div>
   </div>
 </template>
 
 <script>
-import Calendar from './components/Calendar'
 
 export default {
   name: 'App',
-  components: {
-    Calendar
+  computed: {
+      currentYear: () => new Date().getFullYear()
   }
 }
 </script>
