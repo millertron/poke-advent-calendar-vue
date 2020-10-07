@@ -20,8 +20,8 @@ router.get('/:key', (req, res) => {
 })
 
 const isPastNthDayOfMonth = (n) => {
-    const monthToCheck = 12
-    const yearToCheck = 2019
+    const monthToCheck = 10
+    const yearToCheck = 2020
     const today = new Date()
 
     return today.getFullYear() === yearToCheck 
