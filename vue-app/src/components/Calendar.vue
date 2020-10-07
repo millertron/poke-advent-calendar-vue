@@ -1,8 +1,9 @@
 <template>
     <div class='calendar'>
         <div class='d-flex justify-content-center flex-wrap'>
-            <CalendarPocket v-for='pocket in calendarPockets' v-bind:key='pocket.id'
-                v-bind:dayNum='pocket.dayNum' />        
+            <CalendarPocket v-for='(pocket, index) in calendarPockets' v-bind:key='index'
+                :id='pocket.id'
+                :dayNum='pocket.dayNum' />        
         </div>
         <div class='mt-5'>
             <span class='pt-5 small'>
@@ -24,7 +25,10 @@ export default {
 
     data: () => {
         return {
-            calendarPockets: [ {id: 1, dayNum: 1}, {id: 2, dayNum: 2}, {id: 3, dayNum: 3} ]
+            calendarPockets: [ 
+                {id: 1, dayNum: 1}, {id: null, dayNum: 2}, {id: null, dayNum: 3},
+                {id: null, dayNum: 4}, {id: null, dayNum: 5}, {id: null, dayNum: 6}
+            ]
         }
     },
     

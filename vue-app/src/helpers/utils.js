@@ -3,6 +3,7 @@ import { pokeData } from "../pokeData"
 export const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3000"
 
 export const isPastNthDayOfMonth = n => {
+    /*
     const monthToCheck = 12
     const yearToCheck = 2020
     const today = new Date()
@@ -10,6 +11,8 @@ export const isPastNthDayOfMonth = n => {
     return today.getFullYear() === yearToCheck 
         && (today.getMonth() + 1) === monthToCheck // +1 as getMonth() is zero-indexed 
         && n <= today.getDate()
+        */
+    return n > 3
 }
 
 export const getPokeName = pokeId => pokeData[pokeId - 1]
