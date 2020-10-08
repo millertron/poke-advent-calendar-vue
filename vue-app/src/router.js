@@ -15,7 +15,7 @@ export default new Router({
         },
         {
             path: '/adventcalendar',
-            name: 'home',
+            name: 'keyless',
             component: HomeView
         },
         {
