@@ -1,7 +1,7 @@
 <template>
     <div id="app">
     <nav class='nav-red p-2'>
-        <h3>{{ greetings }}</h3>
+        <h3>{{ greetingMessage }}</h3>
     </nav>
     <Calendar />
   </div>
@@ -9,34 +9,20 @@
 
 <script>
 import Calendar from '../components/Calendar'
-import axios from 'axios'
-import { serverUrl } from '../helpers/utils'
+import { mapState } from 'vuex'
+import { FETCH_USER_POCKET_DATA_ACTION } from '../store'
 
 export default {
   components: {
     Calendar
   },
 
-  data() {
-    return {
-      greetings: ''
-    }
+  computed: {
+    ...mapState([ 'greetingMessage' ])
   },
 
   mounted() {
-    axios
-      .get(`${serverUrl}/pockets/${ this.$route.params.key }`)
-      .then((response) => {
-        this.greetings = `Season's greetings, ${response.data.user}`
-      }).catch((error) => {
-          if (error.response){
-              console.log(error.response.status)
-              console.log(error.response.message)
-              this.greetings = "Please access this site using a valid URL key"
-          } else {
-              this.greetings = "Network Connection Unavailable"
-          }
-      })
+    this.$store.dispatch(FETCH_USER_POCKET_DATA_ACTION, this.$route.params.key)
   }
 
 }
