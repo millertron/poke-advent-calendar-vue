@@ -19,7 +19,7 @@ export default new Router({
             component: HomeView
         },
         {
-            path: '/adventcalendar/:id',
+            path: '/adventcalendar/:key',
             name: 'adventcalendar',
             component: AdventCalendarView
         }

@@ -1,6 +1,6 @@
 import { pokeData } from "../pokeData"
 
-export const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3000"
+export const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3200"
 
 export const isPastNthDayOfMonth = n => {
     /*
