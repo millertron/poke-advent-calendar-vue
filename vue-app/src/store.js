@@ -28,16 +28,27 @@ export default new Vuex.Store({
                 .then((response) => {
                     commit(SET_GREETING_MESSAGE_MUTATION,
                         `Season's greetings, ${response.data.user}`)
+                
+                    const pockets = response.data.pockets
+                    const urlKey = key
+                    for (let i = 0; i < 25; i++) {
+                        const pocketOfDay = pockets.find((pocket) => pocket.dayNum === i + 1)
+                        if (!pocketOfDay) {
+                            pockets.push({ urlKey: urlKey, dayNum: (i + 1), pokeId: null })
+                        }
+                    }
+                    pockets.sort((p1, p2) => p1.dayNum - p2.dayNum)
+                    commit(SET_POCKETS_MUTATION, pockets)
                 }).catch((error) => {
-                if (error.response) {
-                    console.log(error.response.status)
-                    console.log(error.response.message)
-                    commit(SET_GREETING_MESSAGE_MUTATION,
-                        'Please access this site using a valid URL key')
-                } else {
-                    commit(SET_GREETING_MESSAGE_MUTATION, 'Network Connection Unavailable')
-                }
-            })
+                    if (error.response) {
+                        console.log(error.response.status)
+                        console.log(error.response.message)
+                        commit(SET_GREETING_MESSAGE_MUTATION,
+                            'Please access this site using a valid URL key')
+                    } else {
+                        commit(SET_GREETING_MESSAGE_MUTATION, 'Network Connection Unavailable')
+                    }
+                })
         }
     },
 

@@ -1,8 +1,8 @@
 <template>
     <div class='calendar'>
         <div class='d-flex justify-content-center flex-wrap'>
-            <CalendarPocket v-for='(pocket, index) in calendarPockets' v-bind:key='index'
-                :id='pocket.id'
+            <CalendarPocket v-for='(pocket, index) in pockets' v-bind:key='index'
+                :id='pocket.pokeId'
                 :dayNum='pocket.dayNum' />        
         </div>
     </div>
@@ -10,19 +10,15 @@
 
 <script>
 import CalendarPocket from './CalendarPocket'
+import { mapState } from 'vuex'
 
 export default {
     components: {
         CalendarPocket
     },
 
-    data: () => {
-        return {
-            calendarPockets: [ 
-                {id: 1, dayNum: 1}, {id: null, dayNum: 2}, {id: null, dayNum: 3},
-                {id: null, dayNum: 4}, {id: null, dayNum: 5}, {id: null, dayNum: 6}
-            ]
-        }
+    computed: {
+        ...mapState(['pockets'])
     }
 }
 </script>
