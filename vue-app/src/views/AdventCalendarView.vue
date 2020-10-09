@@ -4,17 +4,20 @@
         <h3>{{ greetingMessage }}</h3>
     </nav>
     <Calendar />
+    <Modal />
   </div>
 </template>
 
 <script>
-import Calendar from '../components/Calendar'
 import { mapState } from 'vuex'
+import Calendar from '../components/Calendar'
+import Modal from '../components/Modal'
 import { FETCH_USER_POCKET_DATA_ACTION } from '../store/actions'
 
 export default {
   components: {
-    Calendar
+    Calendar,
+    Modal
   },
 
   computed: {

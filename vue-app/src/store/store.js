@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { serverUrl } from '../helpers/utils'
-import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION } from './mutations'
+import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION, SET_MODAL_DATA_MUTATION } from './mutations'
+import { OPEN_POCKET_MODAL_TITLE} from '../components/Modal'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,10 @@ export default new Vuex.Store({
         modalData: { displayed: false },
         urlKey: null,
         greetingMessage: null
+    },
+
+    getters: {
+        modalDisplayed: state => state.modalData.displayed
     },
 
     actions: {
@@ -52,19 +57,25 @@ export default new Vuex.Store({
         async requestOpenPocket({ dispatch, commit, state }, dayNum) {
             await dispatch('sendOpenPocketRequest', dayNum)
                 .then(response => {
+                    const pokeId = response.data.pokeId
                     const newPockets = state.pockets.map((pocket) => {
                         if (pocket.dayNum === response.data.dayNum) {
                             return { 
                                 urlKey: pocket.urlKey,
                                 dayNum: pocket.dayNum,
-                                pokeId: response.data.pokeId 
+                                pokeId: pokeId
                             }
                         } else return pocket
                     })
                     commit(SET_POCKETS_MUTATION, newPockets)
+                    commit(SET_MODAL_DATA_MUTATION, { displayed: true, title: OPEN_POCKET_MODAL_TITLE, pokeId: pokeId })
                 }).catch(error => {
                     console.log('Failed to open pocket!', error)
                 })
+        },
+
+        closeModal({ commit }) {
+            commit(SET_MODAL_DATA_MUTATION, { displayed: false })
         }
     },
 
@@ -73,7 +84,8 @@ export default new Vuex.Store({
             state.greetingMessage = greetingMessage
         },
         [SET_URL_KEY_MUTATION]: (state, urlKey) => { state.urlKey = urlKey },
-        [SET_POCKETS_MUTATION]: (state, pockets) => { state.pockets = pockets }
+        [SET_POCKETS_MUTATION]: (state, pockets) => { state.pockets = pockets },
+        [SET_MODAL_DATA_MUTATION]: (state, modalData) => { state.modalData = modalData}
     },
 
 })
