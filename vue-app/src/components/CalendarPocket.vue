@@ -14,6 +14,7 @@
 <script>
 import ImageHolder from './ImageHolder'
 import { isPastNthDayOfMonth } from '../helpers/utils'
+import { REQUEST_OPEN_POCKET_ACTION } from '../store/actions'
 
 /* Arrange in fixed order: 
 2, 8, 24, 11, 13, 
@@ -54,7 +55,7 @@ export default {
 
     methods: {
         handleClick() {
-            this.$store.dispatch('requestOpenPocket', this.dayNum)
+            this.$store.dispatch(REQUEST_OPEN_POCKET_ACTION, this.dayNum)
         }
     }
 }

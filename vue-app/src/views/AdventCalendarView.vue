@@ -10,7 +10,7 @@
 <script>
 import Calendar from '../components/Calendar'
 import { mapState } from 'vuex'
-import { FETCH_USER_POCKET_DATA_ACTION } from '../store'
+import { FETCH_USER_POCKET_DATA_ACTION } from '../store/actions'
 
 export default {
   components: {

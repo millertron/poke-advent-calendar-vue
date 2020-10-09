@@ -1,14 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import { serverUrl } from './helpers/utils'
+import { serverUrl } from '../helpers/utils'
+import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION } from './mutations'
 
 Vue.use(Vuex)
-
-export const SET_GREETING_MESSAGE_MUTATION = 'SET_GREETING_MESSAGE'
-export const SET_POCKETS_MUTATION = 'SET_POCKETS'
-export const SET_URL_KEY_MUTATION = 'SET_URL_KEY'
-export const FETCH_USER_POCKET_DATA_ACTION = 'fetchUserPocketData'
 
 export default new Vuex.Store({
     state: {
@@ -73,11 +69,11 @@ export default new Vuex.Store({
     },
 
     mutations: {
-        SET_GREETING_MESSAGE: (state, greetingMessage) => {
+        [SET_GREETING_MESSAGE_MUTATION]: (state, greetingMessage) => {
             state.greetingMessage = greetingMessage
         },
-        SET_URL_KEY: (state, urlKey) => { state.urlKey = urlKey },
-        SET_POCKETS: (state, pockets) => { state.pockets = pockets }
+        [SET_URL_KEY_MUTATION]: (state, urlKey) => { state.urlKey = urlKey },
+        [SET_POCKETS_MUTATION]: (state, pockets) => { state.pockets = pockets }
     },
 
 })
