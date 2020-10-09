@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <div class='card pocket-card'>
-            <ImageHolder v-if="this.isOpen" :imageDataKey='this.id' />
-            <button v-if="!this.isOpen"
-                class='btn btn-light h-100'
-                :class='this.orderClass'
-                :disabled='this.isDisabled'
-                v-on:click='this.handleClick' >
-                Pocket {{this.dayNum}}
-            </button>
-        </div>
+    <div class='card pocket-card' :class='orderClass'>
+        <ImageHolder v-if="this.isOpen" :imageDataKey='this.id' />
+        <button v-if="!this.isOpen"
+            class='btn btn-light h-100'
+            :class='this.orderClass'
+            :disabled='this.isDisabled'
+            v-on:click='this.handleClick' >
+            Pocket {{this.dayNum}}
+        </button>
     </div>
 </template>
 
