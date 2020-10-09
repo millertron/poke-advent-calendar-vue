@@ -1,6 +1,6 @@
 <template>
-    <div class='calendar'>
-        <div class='d-flex justify-content-center flex-wrap'>
+    <div class='d-flex justify-content-center'>
+        <div class='calendar d-flex justify-content-center flex-wrap'>
             <CalendarPocket v-for='(pocket, index) in pockets' v-bind:key='index'
                 :id='pocket.pokeId'
                 :dayNum='pocket.dayNum' />        
