@@ -1,11 +1,12 @@
 <template>
     <div>
         <div class='card pocket-card'>
-            <ImageHolder v-if="this.isOpen" :imageDataKey='1' />
+            <ImageHolder v-if="this.isOpen" :imageDataKey='this.id' />
             <button v-if="!this.isOpen"
                 class='btn btn-light h-100'
                 :class='this.orderClass'
-                :disabled='this.isDisabled' >
+                :disabled='this.isDisabled'
+                v-on:click='this.handleClick' >
                 Pocket {{this.dayNum}}
             </button>
         </div>
@@ -50,6 +51,12 @@ export default {
         },
         isOpen() {
             return this.id !== null
+        }
+    },
+
+    methods: {
+        handleClick() {
+            this.$store.dispatch('requestOpenPocket', this.dayNum)
         }
     }
 }

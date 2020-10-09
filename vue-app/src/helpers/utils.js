@@ -12,7 +12,7 @@ export const isPastNthDayOfMonth = n => {
         && (today.getMonth() + 1) === monthToCheck // +1 as getMonth() is zero-indexed 
         && n <= today.getDate()
         */
-    return n > 3
+    return n > 15
 }
 
 export const getPokeName = pokeId => pokeData[pokeId - 1]

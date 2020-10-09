@@ -18,19 +18,17 @@ export default new Vuex.Store({
         greetingMessage: null
     },
 
-    getters: {
-
-    },
-
     actions: {
         fetchUserPocketData({ commit }, key) {
             axios.get(`${serverUrl}/pockets/${ key }`)
                 .then((response) => {
                     commit(SET_GREETING_MESSAGE_MUTATION,
                         `Season's greetings, ${response.data.user}`)
-                
+                    
                     const pockets = response.data.pockets
                     const urlKey = key
+                    commit(SET_URL_KEY_MUTATION, urlKey)
+
                     for (let i = 0; i < 25; i++) {
                         const pocketOfDay = pockets.find((pocket) => pocket.dayNum === i + 1)
                         if (!pocketOfDay) {
@@ -48,6 +46,28 @@ export default new Vuex.Store({
                     } else {
                         commit(SET_GREETING_MESSAGE_MUTATION, 'Network Connection Unavailable')
                     }
+                })
+        },
+
+        sendOpenPocketRequest({ state }, dayNum) {
+           return axios.post(`${serverUrl}/pockets/create`, { key: state.urlKey, dayNum: dayNum })
+        },
+
+        async requestOpenPocket({ dispatch, commit, state }, dayNum) {
+            await dispatch('sendOpenPocketRequest', dayNum)
+                .then(response => {
+                    const newPockets = state.pockets.map((pocket) => {
+                        if (pocket.dayNum === response.data.dayNum) {
+                            return { 
+                                urlKey: pocket.urlKey,
+                                dayNum: pocket.dayNum,
+                                pokeId: response.data.pokeId 
+                            }
+                        } else return pocket
+                    })
+                    commit(SET_POCKETS_MUTATION, newPockets)
+                }).catch(error => {
+                    console.log('Failed to open pocket!', error)
                 })
         }
     },
