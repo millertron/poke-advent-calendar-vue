@@ -5,7 +5,7 @@
                 :alt='this.pokeName' />
         </div>
         <div>
-            <span>{{this.pokeName}}</span>
+            <span>{{ this.pokeName }}</span>
         </div>
     </div>
 </template>
