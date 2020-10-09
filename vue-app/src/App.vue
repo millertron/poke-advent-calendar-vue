@@ -1,6 +1,7 @@
 <template>
   <div>
     <router-view />
+    <Snow color='#FFFFFF' :swing='5'/>
     <footer class='page-footer'>
       <div class='mt-5'>
           <span class='pt-5 small'>
@@ -14,8 +15,12 @@
 </template>
 
 <script>
-
+import Snow from 'vue-niege'
+  
 export default {
+  components: {
+    Snow
+  },
   name: 'App',
   computed: {
       currentYear: () => new Date().getFullYear()
