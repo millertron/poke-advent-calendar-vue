@@ -3,9 +3,12 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import { serverUrl } from '../helpers/utils'
 import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION, SET_MODAL_DATA_MUTATION } from './mutations'
+import { CLOSE_MODAL_ACTION } from './actions'
 import { OPEN_POCKET_MODAL_TITLE} from '../components/Modal'
 
 Vue.use(Vuex)
+const totalPocketNum = 3
+const OPEN_COMPLETION_MODAL_ACTION = 'openCompletionModal'
 
 export default new Vuex.Store({
     state: {
@@ -15,18 +18,16 @@ export default new Vuex.Store({
         greetingMessage: null
     },
 
-    getters: {
-        modalDisplayed: state => state.modalData.displayed
-    },
-
     actions: {
-        fetchUserPocketData({ commit }, key) {
+        fetchUserPocketData({ dispatch, commit }, key) {
             axios.get(`${serverUrl}/pockets/${ key }`)
                 .then((response) => {
                     commit(SET_GREETING_MESSAGE_MUTATION,
                         `Season's greetings, ${response.data.user}`)
                     
                     const pockets = response.data.pockets
+                    console.log(pockets.length)
+                    const fullPockets = pockets.length >= totalPocketNum
                     const urlKey = key
                     commit(SET_URL_KEY_MUTATION, urlKey)
 
@@ -38,6 +39,10 @@ export default new Vuex.Store({
                     }
                     pockets.sort((p1, p2) => p1.dayNum - p2.dayNum)
                     commit(SET_POCKETS_MUTATION, pockets)
+
+                    if (fullPockets) {
+                        dispatch(OPEN_COMPLETION_MODAL_ACTION)
+                    }
                 }).catch((error) => {
                     if (error.response) {
                         console.log(error.response.status)
@@ -74,9 +79,21 @@ export default new Vuex.Store({
                 })
         },
 
+        closePocketModal({ dispatch, state }) {
+            if (state.pockets.filter((pocket) => pocket.pokeId !== null).length >= totalPocketNum) {
+                dispatch(OPEN_COMPLETION_MODAL_ACTION)
+            } else {
+                dispatch(CLOSE_MODAL_ACTION)
+            }
+        },
+
+        openCompletionModal({ commit }) {
+            commit(SET_MODAL_DATA_MUTATION, { displayed: true, title: 'Merry Christmas!', message: 'complete'})
+        },
+
         closeModal({ commit }) {
             commit(SET_MODAL_DATA_MUTATION, { displayed: false })
-        }
+        },
     },
 
     mutations: {
@@ -85,7 +102,7 @@ export default new Vuex.Store({
         },
         [SET_URL_KEY_MUTATION]: (state, urlKey) => { state.urlKey = urlKey },
         [SET_POCKETS_MUTATION]: (state, pockets) => { state.pockets = pockets },
-        [SET_MODAL_DATA_MUTATION]: (state, modalData) => { state.modalData = modalData}
+        [SET_MODAL_DATA_MUTATION]: (state, modalData) => { state.modalData = modalData },
     },
 
 })

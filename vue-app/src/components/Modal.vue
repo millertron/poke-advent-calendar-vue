@@ -29,10 +29,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import { CLOSE_MODAL_ACTION } from '../store/actions'
+import { CLOSE_MODAL_ACTION, CLOSE_POCKET_MODAL_ACTION } from '../store/actions'
 import PocketModalContent from './PocketModalContent'
 import CompletionModalContent from './CompletionModalContent'
 export const OPEN_POCKET_MODAL_TITLE = 'You caught a Pokémon!'
+export const errorModalTitle = "Oops...Error!"
+export const errorModalMessage = "An error occurred during pocket opening. Please try again later or contact site admin."
 
 export default {
     components: {
@@ -47,7 +49,11 @@ export default {
     },
     methods: {
         closeModal() {
-            this.$store.dispatch(CLOSE_MODAL_ACTION)
+            if (this.pokeId) {
+                this.$store.dispatch(CLOSE_POCKET_MODAL_ACTION)
+            } else {
+                this.$store.dispatch(CLOSE_MODAL_ACTION)
+            }
         }
     }
 }
