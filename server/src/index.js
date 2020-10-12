@@ -14,5 +14,12 @@ app.use(express.json())
 app.use('/pockets', pocketRoutes)
 
 db.connect((err, client) => {
+    if (process.env.NODE_ENV === `production`) {
+        app.use(express.static(path.resolve(__dirname, 'dist')))
+        app.get('/*', (req, res) => {
+            res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+        })
+    }
+
     app.listen(port, ()=>(console.log(`Poke Express Running on Port ${port}!`)));
 })
