@@ -1,7 +1,8 @@
 const express = require('express')
+const cors = require('cors')
+const path = require('path')
 const db = require('./helpers/database')
 const pocketRoutes = require('./routes/pockets')
-const cors = require('cors')
 
 const app = express()
 const port = process.env.PORT || 3200
@@ -15,9 +16,10 @@ app.use('/pockets', pocketRoutes)
 
 db.connect((err, client) => {
     if (process.env.NODE_ENV === `production`) {
-        app.use(express.static(path.resolve(__dirname, 'dist')))
+        console.log('Application start up in production mode...')
+        app.use(express.static(path.resolve(__dirname, '../dist')))
         app.get('/*', (req, res) => {
-            res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+            res.sendFile(path.resolve(__dirname, '../dist/index.html'))
         })
     }
 
