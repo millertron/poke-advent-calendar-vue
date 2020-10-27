@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "component-install": "cd vue-app && npm install && cd ../server && npm install",
     "vue-build": "echo 'Running vue-build' && cd server && rm -rf ./dist && cd ../vue-app && npm run build && mv dist ../server/. && cd ../",
     "server-start": "echo 'Running server-start' && cd server && npm run prod",
-    "start": "npm run vue-build && npm run server-start",
+    "start": "npm run component-install && npm run vue-build && npm run server-start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
