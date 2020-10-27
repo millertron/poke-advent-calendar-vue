@@ -7,7 +7,7 @@
     "vue-build": "echo 'Running vue-build' && cd server && rm -rf ./dist && cd ../vue-app && npm run build && mv dist ../server/. && cd ../",
     "postinstall": "cd server && npm install",
     "server-start": "echo 'Running server-start' && cd server && npm run prod",
-    "start": "npm run npm run server-start",
+    "start": "npm run server-start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
