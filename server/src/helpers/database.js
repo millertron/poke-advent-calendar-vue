@@ -4,6 +4,8 @@ const databaseUrl = process.env.MONGODB_URI || 'localhost:27017'
 const databaseName = process.env.MONGODB_DB || 'myTestDB'
 const databaseUser = process.env.MONGODB_USERNAME
 const databasePassword = process.env.MONGODB_PASSWORD
+const connectionProtocol = process.env.MONGODB_PROTOCOL || 'mongodb'
+const connectionOptions = process.env.MONGODB_OPTIONS || ''
 const authentication = (databaseUser && databasePassword) ? `${databaseUser}:${databasePassword}@` : ""
 
 var state = {
@@ -15,7 +17,7 @@ const connect = (done) => {
         return done()
     }
 
-    MongoClient.connect(`mongodb://${authentication}${databaseUrl}/${databaseName}`, (err, client) => {
+    MongoClient.connect(`${connectionProtocol}://${authentication}${databaseUrl}/${databaseName}${connectionOptions}`, (err, client) => {
         if (err) {
             console.log("Error connecting to MongoDB", err)
             return done(err)
