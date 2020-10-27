@@ -10,7 +10,10 @@ const port = process.env.PORT || 3200
 app.get('/', (req, res) => res.send("For the advent calendar app, please navigate to &#39;/adventcalendar/&#39;" 
     + " followed by the URL key provided by the administrator."))
 
-app.use(cors())
+if (process.env.NODE_ENV !== 'production') {
+    app.use(cors())
+}
+
 app.use(express.json())
 app.use('/pockets', pocketRoutes)
 
