@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import { serverUrl } from '../helpers/utils'
+import { serverUrl, totalPocketNum } from '../helpers/utils'
 import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION, SET_MODAL_DATA_MUTATION } from './mutations'
 import { CLOSE_MODAL_ACTION } from './actions'
 import { OPEN_POCKET_MODAL_TITLE} from '../components/Modal'
 
 Vue.use(Vuex)
-const totalPocketNum = 3
 const OPEN_COMPLETION_MODAL_ACTION = 'openCompletionModal'
 
 export default new Vuex.Store({
