@@ -25,7 +25,6 @@ export default new Vuex.Store({
                         `Season's greetings, ${response.data.user}`)
                     
                     const pockets = response.data.pockets
-                    console.log(pockets.length)
                     const fullPockets = pockets.length >= totalPocketNum
                     const urlKey = key
                     commit(SET_URL_KEY_MUTATION, urlKey)
