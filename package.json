@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "vue-build": "echo 'Running vue-build' && cd server && rm -rf ./dist && cd ../vue-app && npm run build && mv dist ../server/. && cd ../",
-    "postinstall": "cd server && npm install && cd vue-app && npm install && cd ../ && npm vue-build",
+    "postinstall": "cd server && npm install && cd ../vue-app && npm install && cd ../ && npm vue-build",
     "server-start": "echo 'Running server-start' && cd server && npm run prod",
     "start": "npm run npm run server-start",
     "test": "echo \"Error: no test specified\" && exit 1"
