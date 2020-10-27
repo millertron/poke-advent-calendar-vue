@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "vue-build": "cd server && rm -rf ./dist && cd ../vue-app && npm run build && mv dist ../server/.",
+    "vue-build": "echo 'Running vue-build' && cd server && rm -rf ./dist && cd ../vue-app && npm run build && mv dist ../server/. && cd ../",
+    "server-start": "echo 'Running server-start' && cd server && npm run prod",
+    "start": "npm run vue-build && npm run server-start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/millertron/poke-advent-calendar-vue/issues"
   },
-  "homepage": "https://github.com/millertron/poke-advent-calendar-vue#readme"
+  "homepage": "https://github.com/millertron/poke-advent-calendar-vue#readme",
+  "devDependencies": {}
 }
