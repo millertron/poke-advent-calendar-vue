@@ -2,7 +2,7 @@
     <div className="modalImageContent transparent slide-from-right">
         <h3>{{ this.text }}</h3>
         <div>
-            <img :src='this.imgSrc' :alt='this.pokeName'/>
+            <img :src='this.imgSrc' :alt='this.pokeName' :title='this.pokeName'/>
         </div>
     </div>
 </template>
