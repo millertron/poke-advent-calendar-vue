@@ -10,9 +10,9 @@
               Pokémon sprite links © Pokémon Database, 2008-{{currentYear}}.
           </span>
           <br />
-          <img class='scaled-logo' src='./assets/vue-logo.png' alt='Vue.js'/>
-          <img class='scaled-logo' src='./assets/node-logo.png' alt='Node.js'/>
-          <img class='scaled-logo' src='./assets/mongo-logo.png' alt='MongoDB'/>
+          <img class='scaled-logo' src='./assets/vue-logo.png' alt='Vue.js' title='Vue.js'/>
+          <img class='scaled-logo' src='./assets/node-logo.png' alt='Node.js' title='Node.js'/>
+          <img class='scaled-logo' src='./assets/mongo-logo.png' alt='MongoDB' title='MongoDB'/>
       </div>
     </footer>
   </div>

@@ -2,7 +2,8 @@
     <div class='text-center'>
         <div class='w-100 h-75 pt-3'>
             <img :src='this.pokeImgSrc' 
-                :alt='this.pokeName' />
+                :alt='this.pokeName'
+                :title='this.pokeName' />
         </div>
         <div>
             <span>{{ this.pokeName }}</span>
