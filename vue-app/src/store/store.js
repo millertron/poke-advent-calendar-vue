@@ -22,7 +22,7 @@ export default new Vuex.Store({
             axios.get(`${serverUrl}/pockets/${ key }`)
                 .then((response) => {
                     commit(SET_GREETING_MESSAGE_MUTATION,
-                        `Season's greetings, ${response.data.user}`)
+                        `Season's greetings, ${response.data.user}!`)
                     
                     const pockets = response.data.pockets
                     const fullPockets = pockets.length >= totalPocketNum
