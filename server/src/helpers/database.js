@@ -19,7 +19,7 @@ const connect = (done) => {
 
     MongoClient.connect(`${connectionProtocol}://${authentication}${databaseUrl}/${databaseName}${connectionOptions}`, (err, client) => {
         if (err) {
-            console.log("Error connecting to MongoDB", err)
+            console.log("Error connecting to MongoDB")
             return done(err)
         }
         state.db = client.db(databaseName)

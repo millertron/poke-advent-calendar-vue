@@ -43,8 +43,6 @@ export default new Vuex.Store({
                     }
                 }).catch((error) => {
                     if (error.response) {
-                        console.log(error.response.status)
-                        console.log(error.response.message)
                         commit(SET_GREETING_MESSAGE_MUTATION,
                             'Please access this site using a valid URL key')
                     } else {
