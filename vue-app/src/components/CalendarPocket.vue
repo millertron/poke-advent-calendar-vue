@@ -6,7 +6,7 @@
             :class='this.orderClass'
             :disabled='this.isDisabled'
             v-on:click='this.handleClick' >
-            Pocket {{this.dayNum}}
+            {{this.dayNum}}
         </button>
     </div>
 </template>
