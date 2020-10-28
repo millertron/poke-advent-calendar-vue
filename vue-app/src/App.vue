@@ -9,6 +9,10 @@
               Pokémon images &amp; names © Nintendo/Game Freak 1995-{{currentYear}}. <br/>
               Pokémon sprite links © Pokémon Database, 2008-{{currentYear}}.
           </span>
+          <br />
+          <img class='scaled-logo' src='./assets/vue-logo.png' alt='Vue.js'/>
+          <img class='scaled-logo' src='./assets/node-logo.png' alt='Node.js'/>
+          <img class='scaled-logo' src='./assets/mongo-logo.png' alt='MongoDB'/>
       </div>
     </footer>
   </div>
