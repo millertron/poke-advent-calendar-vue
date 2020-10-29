@@ -4,15 +4,16 @@ export const serverUrl = process.env.VUE_APP_NODE_ENV === `production` ? `` : "h
 
 export const totalPocketNum = parseInt(process.env.VUE_APP_TOTAL_POCKET_NUM) || 25
 
-export const isPastNthDayOfMonth = n => {
-    
-    const monthToCheck = parseInt(process.env.VUE_APP_CALENDAR_MONTH) || 12
-    const yearToCheck = parseInt(process.env.VUE_APP_CALENDAR_YEAR) || 2020
-    const today = new Date()
+const calendarMonth = parseInt(process.env.VUE_APP_CALENDAR_MONTH) || 12
+const calendarYear = parseInt(process.env.VUE_APP_CALENDAR_YEAR) || 2020
+const today = new Date()
 
-    return today.getFullYear() === yearToCheck 
-        && (today.getMonth() + 1) === monthToCheck // +1 as getMonth() is zero-indexed 
-        && n <= today.getDate()
+export const isCalendarAvailable = () => {
+    return today.getFullYear() === calendarYear && today.getMonth() + 1 === calendarMonth
+}
+
+export const isPastNthDayOfMonth = n => {
+    return isCalendarAvailable && n <= today.getDate()
 }
 
 export const getPokeName = pokeId => pokeData[pokeId - 1]
