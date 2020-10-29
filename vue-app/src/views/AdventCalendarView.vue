@@ -3,7 +3,7 @@
     <nav class='nav-red p-2'>
         <h3>{{ greetingMessage }}</h3>
     </nav>
-    <Calendar v-if='isCalendarAvailable' />
+    <Calendar />
     <Modal />
   </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
     <div class='d-flex justify-content-center'>
-        <div v-if='isCalendarAvailable' class='calendar d-flex justify-content-center flex-wrap'>
+        <div v-if='this.isCalendarAvailable' class='calendar d-flex justify-content-center flex-wrap'>
             <CalendarPocket v-for='(pocket, index) in pockets' v-bind:key='index'
                 :id='pocket.pokeId'
                 :dayNum='pocket.dayNum' />        
         </div>
-        <Preview v-if='!isCalendarAvailable' />
+        <Preview v-if='!this.isCalendarAvailable' />
     </div>
 </template>
 
