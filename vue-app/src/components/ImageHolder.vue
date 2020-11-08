@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { getPokeImgSrc, getPokeName } from '../helpers/utils'
+import { getPokeImgSrc, getPokeNames } from '../helpers/utils'
+import { ENGLISH } from '../helpers/lang'
 export default {
     props: {
         imageDataKey: Number
@@ -20,10 +21,10 @@ export default {
 
     computed: {
         pokeName() {
-            return getPokeName(this.imageDataKey)
+            return getPokeNames(this.imageDataKey)[ENGLISH]
         },
         pokeImgSrc() {
-            return getPokeImgSrc(getPokeName(this.imageDataKey))
+            return getPokeImgSrc(getPokeNames(this.imageDataKey)[ENGLISH])
         }
     }
 }

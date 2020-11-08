@@ -8,20 +8,25 @@
 </template>
 
 <script>
-import { getPokeName, getPokeImgSrc } from '../helpers/utils'
+import { getPokeNames, getPokeImgSrc } from '../helpers/utils'
+import { ENGLISH, JAPANESE } from '../helpers/lang'
 export default {
     props: {
         pokeId: Number
     },
     computed: {
         pokeName() {
-            return getPokeName(this.pokeId)
+            return getPokeNames(this.pokeId)[ENGLISH]
         },
         text() {
-            return `You got ${this.pokeName}!`
+            const message = {
+                [ENGLISH]: `You got ${this.pokeName}!`,
+                [JAPANESE]: `${this.pokeName}をつかまえた！`
+            }
+            return message[ENGLISH]
         },
         imgSrc() {
-            return getPokeImgSrc(this.pokeName)
+            return getPokeImgSrc(getPokeNames(this.pokeId)[ENGLISH])
         }
     }
 }

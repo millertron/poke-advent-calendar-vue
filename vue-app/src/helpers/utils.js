@@ -16,7 +16,7 @@ export const isPastNthDayOfMonth = n => {
     return isCalendarAvailable && n <= today.getDate()
 }
 
-export const getPokeName = pokeId => pokeData[pokeId - 1]
+export const getPokeNames = pokeId => pokeData[pokeId - 1]
 
 export const  getPokeImgSrc = pokeName => {
     const formattedName = pokeName.toLowerCase().replace("'",'');
