@@ -43,7 +43,7 @@ export default {
 
     computed: {
         isDisabled() {
-            return isPastNthDayOfMonth(this.dayNum)
+            return !isPastNthDayOfMonth(this.dayNum)
         },
         orderClass() {
             return `order-${order[this.dayNum -1]}`
