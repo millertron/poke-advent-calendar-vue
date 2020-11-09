@@ -4,7 +4,7 @@ import axios from 'axios'
 import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION, SET_MODAL_DATA_MUTATION, SET_LANG_MUTATION } from './mutations'
 import { CLOSE_MODAL_ACTION } from './actions'
 import { OPEN_POCKET_MODAL_TITLE} from '../components/Modal'
-import { JAPANESE } from '../helpers/lang'
+import { ENGLISH } from '../helpers/lang'
 import { serverUrl, totalPocketNum } from '../helpers/utils'
 
 Vue.use(Vuex)
@@ -16,7 +16,7 @@ export default new Vuex.Store({
         modalData: { displayed: false },
         urlKey: null,
         greetingMessage: null,
-        lang: JAPANESE
+        lang: ENGLISH
     },
 
     actions: {
@@ -93,8 +93,8 @@ export default new Vuex.Store({
             commit(SET_MODAL_DATA_MUTATION, { displayed: false })
         },
 
-        switchLang({ commit, state }) {
-            commit(SET_LANG_MUTATION, state.lang)
+        switchLang({ commit }, lang) {
+            commit(SET_LANG_MUTATION, lang)
         }
     },
 
