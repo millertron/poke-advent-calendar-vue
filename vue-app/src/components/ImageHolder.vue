@@ -14,6 +14,7 @@
 <script>
 import { getPokeImgSrc, getPokeNames } from '../helpers/utils'
 import { ENGLISH } from '../helpers/lang'
+import { mapState } from 'vuex'
 export default {
     props: {
         imageDataKey: Number
@@ -21,11 +22,13 @@ export default {
 
     computed: {
         pokeName() {
-            return getPokeNames(this.imageDataKey)[ENGLISH]
+            console.log(getPokeNames(this.imageDataKey), this.lang)
+            return getPokeNames(this.imageDataKey)[this.lang]
         },
         pokeImgSrc() {
             return getPokeImgSrc(getPokeNames(this.imageDataKey)[ENGLISH])
-        }
+        },
+        ...mapState(['lang'])
     }
 }
 </script>

@@ -10,24 +10,26 @@
 <script>
 import { getPokeNames, getPokeImgSrc } from '../helpers/utils'
 import { ENGLISH, JAPANESE } from '../helpers/lang'
+import { mapState } from 'vuex'
 export default {
     props: {
         pokeId: Number
     },
     computed: {
         pokeName() {
-            return getPokeNames(this.pokeId)[ENGLISH]
+            return getPokeNames(this.pokeId)[this.lang]
         },
         text() {
             const message = {
                 [ENGLISH]: `You got ${this.pokeName}!`,
                 [JAPANESE]: `${this.pokeName}をつかまえた！`
             }
-            return message[ENGLISH]
+            return message[this.lang]
         },
         imgSrc() {
             return getPokeImgSrc(getPokeNames(this.pokeId)[ENGLISH])
-        }
+        },
+        ...mapState(['lang'])
     }
 }
 </script>
