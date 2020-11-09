@@ -1,7 +1,14 @@
 <template>
     <div id="app">
-    <nav class='nav-red p-2'>
-        <h3>{{ greetingMessage }}</h3>
+    <nav class='navbar nav-red p-2'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <span class='navbar-brand'>{{ greetingMessage }}</span>
+        </div>
+        <ul class='nav navbar-nav navbar-right'>
+          <li><LanguageSelector /></li>
+        </ul>
+      </div>
     </nav>
     <Calendar />
     <Modal />
@@ -10,12 +17,14 @@
 
 <script>
 import { mapState } from 'vuex'
+import LanguageSelector from '../components/LanguageSelector'
 import Calendar from '../components/Calendar'
 import Modal from '../components/Modal'
 import { FETCH_USER_POCKET_DATA_ACTION } from '../store/actions'
 
 export default {
   components: {
+    LanguageSelector,
     Calendar,
     Modal
   },
