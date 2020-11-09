@@ -22,7 +22,6 @@ export default {
 
     computed: {
         pokeName() {
-            console.log(getPokeNames(this.imageDataKey), this.lang)
             return getPokeNames(this.imageDataKey)[this.lang]
         },
         pokeImgSrc() {
