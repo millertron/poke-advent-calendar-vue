@@ -32,7 +32,11 @@ import { mapState } from 'vuex'
 import { CLOSE_MODAL_ACTION, CLOSE_POCKET_MODAL_ACTION } from '../store/actions'
 import PocketModalContent from './PocketModalContent'
 import CompletionModalContent from './CompletionModalContent'
-export const OPEN_POCKET_MODAL_TITLE = 'You caught a Pokémon!'
+import { ENGLISH, JAPANESE } from '../helpers/lang'
+export const OPEN_POCKET_MODAL_TITLE = {
+    [ENGLISH]: 'You caught a Pokémon!',
+    [JAPANESE]: 'ポケモンをゲットした！'
+}
 export const errorModalTitle = "Oops...Error!"
 export const errorModalMessage = "An error occurred during pocket opening. Please try again later or contact site admin."
 

@@ -71,7 +71,7 @@ export default new Vuex.Store({
                         } else return pocket
                     })
                     commit(SET_POCKETS_MUTATION, newPockets)
-                    commit(SET_MODAL_DATA_MUTATION, { displayed: true, title: OPEN_POCKET_MODAL_TITLE, pokeId: pokeId })
+                    commit(SET_MODAL_DATA_MUTATION, { displayed: true, title: OPEN_POCKET_MODAL_TITLE[state.lang], pokeId: pokeId })
                 }).catch(error => {
                     console.log('Failed to open pocket!', error)
                 })
