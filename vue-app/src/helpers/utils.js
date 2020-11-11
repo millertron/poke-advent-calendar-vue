@@ -1,6 +1,6 @@
 import { pokeData } from "../pokeData"
 
-export const serverUrl = process.env.VUE_APP_NODE_ENV === `production` ? `` : "http://localhost:3200"
+export const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3200"
 
 export const totalPocketNum = parseInt(process.env.VUE_APP_TOTAL_POCKET_NUM) || 25
 
