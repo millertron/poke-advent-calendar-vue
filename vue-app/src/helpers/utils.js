@@ -19,6 +19,10 @@ export const isPastNthDayOfMonth = n => {
 export const getPokeNames = pokeId => pokeData[pokeId - 1]
 
 export const  getPokeImgSrc = pokeName => {
-    const formattedName = pokeName.toLowerCase().replace("'",'');
+    const formattedName = pokeName.toLowerCase()
+        .replace("'",'')
+        .replace('. ','-')
+        .replace('♀','-f')
+        .replace('♂','-m');
     return `https://img.pokemondb.net/sprites/black-white/anim/normal/${formattedName}.gif`
 }
