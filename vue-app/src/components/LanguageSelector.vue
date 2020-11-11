@@ -24,7 +24,6 @@ export default {
     },
     methods: {
         onChange(event) {
-            console.log('Changing!')
             this.$store.dispatch(SWITCH_LANG_ACTION, event.target.value)
         }
     }
