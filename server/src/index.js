@@ -3,6 +3,7 @@ const cors = require('cors')
 const path = require('path')
 const db = require('./helpers/database')
 const pocketRoutes = require('./routes/pockets')
+const userRoutes = require('./routes/users')
 
 const app = express()
 const port = process.env.PORT || 3200
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.json())
 app.use('/pockets', pocketRoutes)
+app.use('/users', userRoutes)
 
 db.connect((err, client) => {
     if (process.env.NODE_ENV === `production`) {
