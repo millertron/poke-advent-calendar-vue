@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="lang" v-on:change='onChange($event)'>
+        <select v-model="lang">
             <option v-for='option in options' 
                 :key='option.value' 
                 :value='option.value'>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+
 import { ENGLISH, JAPANESE } from '../helpers/lang'
 import { SWITCH_LANG_ACTION } from '../store/actions'
 export default {
@@ -24,12 +24,14 @@ export default {
         }
     },
     computed: {
-        ...mapState(['lang'])
-    },
-    methods: {
-        onChange(event) {
-            this.$store.dispatch(SWITCH_LANG_ACTION, event.target.value)
+        lang: {
+            get() {
+                return this.$store.state.lang
+            },
+            set() {
+                this.$store.dispatch(SWITCH_LANG_ACTION, event.target.value)
+            }
         }
-    }
+    },
 }
 </script>

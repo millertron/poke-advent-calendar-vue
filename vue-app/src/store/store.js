@@ -96,8 +96,12 @@ export default new Vuex.Store({
             commit(SET_MODAL_DATA_MUTATION, { displayed: false })
         },
 
-        switchLang({ commit }, lang) {
+        async switchLang({ commit, state }, lang) {            
             commit(SET_LANG_MUTATION, lang)
+            axios.patch(`${serverUrl}/users/`, { urlKey: state.urlKey, lang: lang })
+                .catch(error => {
+                    console.log('Failed to update language preference.', error)
+                })
         }
     },
 
