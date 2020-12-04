@@ -4,7 +4,7 @@ import axios from 'axios'
 import { SET_GREETING_MESSAGE_MUTATION, SET_POCKETS_MUTATION, SET_URL_KEY_MUTATION, SET_MODAL_DATA_MUTATION, SET_LANG_MUTATION } from './mutations'
 import { CLOSE_MODAL_ACTION } from './actions'
 import { OPEN_POCKET_MODAL_TITLE} from '../components/Modal'
-import { JAPANESE } from '../helpers/lang'
+import { ENGLISH } from '../helpers/lang'
 import { serverUrl, totalPocketNum } from '../helpers/utils'
 
 Vue.use(Vuex)
@@ -16,17 +16,20 @@ export default new Vuex.Store({
         modalData: { displayed: false },
         urlKey: null,
         greetingMessage: null,
-        lang: JAPANESE
+        lang: null
     },
 
     actions: {
         fetchUserPocketData({ dispatch, commit }, key) {
             axios.get(`${serverUrl}/pockets/${ key }`)
                 .then((response) => {
+                    const data = response.data
                     commit(SET_GREETING_MESSAGE_MUTATION,
-                        `Season's greetings, ${response.data.user}!`)
+                        `Season's greetings, ${data.user}!`)
                     
-                    const pockets = response.data.pockets
+                    commit(SET_LANG_MUTATION, data.lang || ENGLISH)
+
+                    const pockets = data.pockets
                     const fullPockets = pockets.length >= totalPocketNum
                     const urlKey = key
                     commit(SET_URL_KEY_MUTATION, urlKey)

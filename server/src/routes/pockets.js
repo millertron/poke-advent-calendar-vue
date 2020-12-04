@@ -10,7 +10,7 @@ const fetchPocketsForUrlKey = async (urlKey, res) => {
         res.status(401).json({ message: "Invalid URL Key!" })
     } else {
         const pockets = await pocketRepository.getPocketsForKey(urlKey)
-        res.status(200).json({ user:authenticatedKey.user, pockets:pockets })
+        res.status(200).json({ user: authenticatedKey.user, lang: authenticatedKey.lang, pockets: pockets })
     }
 }
 
